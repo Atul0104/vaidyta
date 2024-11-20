@@ -1,0 +1,2222 @@
+PRACTICAL 1:-
+Write a ‘C’ program to perform following Operations on Array: Create, Insert, Delete, Display.
+Program:-
+// C program to Insert an element in an Array
+#include <stdio.h>
+int main()
+{
+    int arr[100];
+    int i, item, pos, size=7;
+   printf("Enter Array size: ");
+     scanf("%d",&size);
+    printf("Enter %d elements: ",size);
+    // reading array
+    for (i = 0; i < size; i++)
+        scanf("%d",&arr[i]);
+ 
+    // print the original array
+    printf("Array before insertion: ");
+ 
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+ 
+    // read element to be inserted
+    printf("Enter the element to be inserted: ");
+    scanf("%d",&item);
+    
+    // read position at which element is to be inserted
+    printf("Enter the position at which the element is to be inserted: ");
+    scanf("%d",&pos);
+ 
+    // increase the size
+    size++;
+ 
+    // shift elements forward
+    for (i = size-1; i >=pos; i--)
+        arr[i] = arr[i - 1];
+ 
+    // insert item at position
+    arr[pos - 1] = item;
+ 
+    // print the updated array
+    printf("Array after insertion: ");
+    
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+ 
+    return 0;
+}
+
+
+Output:-
+Enter Array size: 5
+Enter 5 elements: 4
+6
+7
+8
+9
+Array before insertion: 4 6 7 8 9 
+Enter the element to be inserted: 1
+Enter the position at which the element is to be inserted: 0
+Array after insertion: 1 4 6 7 8 9 
+DELETE OREPATION ON ARRAY
+//DELETE OREPATION ON ARRAY
+#include<stdio.h>
+void main()
+{
+   int arr[10], key, i, pos = -1, size=5;
+     printf("Enter Array Elements: ");
+     for(i=0;i<size;i++)
+     scanf("%d",&arr[i]);
+     printf("Array before deletion: ");
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+     printf("Enter element to delete: ");
+    scanf("%d",&key);
+    // traverse the array
+    // if any element matches the key, store its position
+      for(i = 0; i < size; i++)
+    {
+           if(arr[i] == key)
+        {
+            pos = i;
+            break;
+        }
+    }
+      if(pos != -1)
+    {
+        //shift elements backwards by one position
+        for(i = pos; i < size - 1; i++)
+            arr[i] = arr[i+1];
+        size--;
+ printf("Array after deletion: ");
+         for(i = 0; i < size - 1; i++)
+            printf("%d ",arr[i]);
+    }
+    else
+      printf("Element Not Found\n");
+         return 0;
+}
+Output:-
+Enter Array Elements: 1
+2
+3
+4
+5
+Array before deletion: 1 2 3 4 5 
+Enter element to delete: 5
+Array after deletion: 1 2 3 4 
+
+Practical 2:- Write a ‘C’ Program to Search a particular data from the given Array of numbers using: Linear Search Method.
+#include <stdio.h>
+void main()
+{
+    int array[100], search, i, size;
+    printf("Enter the number of elements in array\n");
+    scanf("%d",&size);
+    printf("Enter %d numbers\n", size);
+    for ( i = 0 ; i < size ; i++ )
+        scanf("%d",&array[i]);
+    printf("Enter the number to search\n");
+    scanf("%d",&search);
+    for ( i = 0 ; i< size ; i++ )
+    {
+        if ( array[i] == search )   
+        {
+            printf("%d is present at location %d.\n", search, i+1);
+            break;
+        }
+    }
+    if ( i == number )
+        printf("%d is not present in array.\n", search);
+    getch();
+}
+OUTPUT:
+Enter the number of elements in array
+5
+Enter 5 numbers
+12
+15
+10
+11
+24
+Enter the number to search
+13
+13 is not present in array.
+OUTPUT:
+Enter the number of elements in array
+4
+Enter 4 numbers
+15
+12
+10
+8
+Enter the number to search
+8
+8 is present at location 4.
+
+Practical 3:- Write a ‘C’ Program to Search a particular data from the given Array of Strings using Linear Search Method.
+Program:-
+#include <stdio.h>
+#include <string.h> 
+int main()
+{
+  char name[10],arr[3][10] = {"JSPM", 
+                     "BSP", "PUNE"};
+  Int flag=0;
+  printf("String array Elements are:\n");
+  
+  for (int i = 0; i < 3; i++) 
+  {
+    printf("%s\n", arr[i]);
+  }
+  printf("Enter the string to be searched:-");
+  scanf("%s",&name);
+for(int i = 0; i < 5; i++)
+    {
+        int res=strcmp(name, arr[i]);
+       if(res == 0 )
+        {
+            printf("String Found");
+            flag=1;
+           break;
+        }
+           
+      }
+   if(flag==0)
+     printf("String not found”);
+    
+    }
+
+  return 0;
+}
+OUTPUT:-
+String array Elements are:
+JSPM
+BSP
+PUNE
+Enter the string to be searched:-JSPM
+String Found
+
+Practical 4: Write a ‘C’ program to Search a particular data from the given Array of numbers using Binary Search Method.
+Program:
+// Binary Search in C
+#include<stdio.h>
+int main()
+{
+    int I, first, last, middle, n, search, array[100];
+    printf("Enter number of elements\n");
+    scanf("%d",&n);
+    printf("Enter %d integers\n", n);
+    for ( I = 0 ; I < n ; I++ )
+        scanf("%d",&array[I]);
+    printf("Enter value to find\n");
+    scanf("%d",&search);
+    first = 0;
+    last = n - 1;
+    middle = (first+last)/2;
+    while( first <= last )
+    {
+        if ( array[middle] < search )
+            first = middle + 1;
+        else if ( array[middle] == search )
+        {
+            printf("%d found at location %d.\n", search, middle);
+            break;
+        }
+        else
+            last = middle - 1;
+        middle = (first + last)/2;
+    }
+    if ( first > last )
+        printf("Not found! %d is not present in the list.\n", search);
+    return 0;
+}
+
+
+
+Output:-
+Enter number of elements
+8
+Enter 8 integers
+1
+2
+3
+4
+5
+6
+7
+8
+Enter value to find
+5
+5 found at location 4.
+
+
+Practical 5:- Write a ‘C’ Program to Search a particular data from the given Array of Strings using Binary Search Method.
+Program:
+#include <stdio.h>
+#include<conio.h>
+#include <string.h>
+#define MAX_SIZE 7 // Size of the array
+// Function to perform binary search on array of strings
+int binarySearch(char arr[][20], int size, char *searchKey) {
+    int low = 0, high = size - 1, mid;
+    
+    while (low <= high) {
+        mid = (low + high) / 2;
+          int cmp = strcmp(arr[mid], searchKey);
+         if (cmp == 0) {
+            return mid; // Return index if found
+        } else if (cmp < 0) {
+            low = mid + 1; // Search in the right half
+        } else {
+            high = mid - 1; // Search in the left half
+        }
+    }
+    
+    return -1; // Return -1 if not found
+}
+
+void main() {
+    char arr[MAX_SIZE][20] = {"apple", "banana", "cherry", "date", "elderberry", "fig", "grape"};
+    int size = MAX_SIZE;
+    char searchKey[20];
+    int index;
+    // Sorting is assumed for binary search. Here, the array is already sorted.
+    printf("Enter the string to search: ");
+    fgets(searchKey, sizeof(searchKey), stdin);
+    searchKey[strcspn(searchKey, "\n")] = '\0'; // Remove the newline character if present
+    index = binarySearch(arr, size, searchKey);
+    if (index != -1) {
+        printf("String '%s' found at index %d.\n", searchKey, index);
+    } else {
+        printf("String '%s' not found in the array.\n", searchKey);
+    }
+
+    getch();
+}
+OUTPUT:-
+Enter the string to search: apple
+String 'apple' found at index 0.
+
+
+Practical 6:- Write a ‘C’ Program to Sort an Array of numbers using Bubble Sort Method.
+Program:
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+    int a[10],i,j,temp,n;
+    printf("\n Enter the max no.of Elements to Sort: \n");
+    scanf("%d",&n);
+    printf("\n Enter the Elements : \n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0; i<n; i++)
+        for(j=i+1; j<n; j++)
+        {
+            if(a[i]>a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    printf("Sorted list in ascending order:\n");
+    for(i=0; i<n; i++)
+    {
+        printf("%d\t",a[i]);
+    }
+    getch();
+}
+Enter the max no.of Elements to Sort: 
+10
+
+ Enter the Elements : 
+7
+5
+1
+2
+8
+9
+0
+12
+15
+65
+Sorted list in ascending order:
+0       1       2       5       7       8       9       12      15      65
+
+Practical 7:-Write a ‘C’ Program to Sort an Array of Strings using Bubble Sort Method.
+Program:
+ #include <stdio.h>
+#include <string.h>
+
+void bubbleSort(char arr[][100], int n) {
+char temp[100];
+for (int i = 0; i < n - 1; i++) {
+for (int j = 0; j < n - i - 1; j++) {
+if (strcmp(arr[j], arr[j + 1]) > 0) {
+strcpy(temp, arr[j]);
+strcpy(arr[j], arr[j + 1]);
+strcpy(arr[j + 1], temp);
+}
+}
+}
+}
+
+int main() {
+char arr[][100] = {"Riya", "Meera", "Pooja", "Arya","Swamini"};
+int n = sizeof(arr) / sizeof(arr[0]);
+
+bubbleSort(arr, n);
+
+printf("Strings in sorted order are:\n");
+for (int i = 0; i < n; i++) {
+printf("%s\n", arr[i]);
+}
+
+return 0;
+}
+Output:
+Strings in sorted order are:
+Arya
+Meera
+Pooja
+Riya
+Swamini
+
+
+
+
+Practical 8:- Write a ‘C’ Program to Sort an Array of numbers using Selection Sort				
+Method.				
+Program:				
+#include<stdio.h>				
+#include <conio.h>				
+void main() {				
+"int arr[10],n;"				
+"int i, j, position, swap;"				
+"printf(""Enter the number of elements in array\n"");"				
+"scanf(""%d"",&n);"				
+"printf(""Enter %d numbers\n"", n);"				
+for ( i = 0 ; i < n ; i++ )				
+"scanf(""%d"",&arr[i]);"				
+for (i = 0; i < (n - 1); i++) {				
+position = i;				
+for (j = i + 1; j < n; j++) {				
+if (arr[position] > arr[j])				
+position = j;				
+}				
+if (position != i) {				
+swap = arr[i];				
+arr[i] = arr[position];				
+arr[position] = swap;				
+}				
+}				
+for (i = 0; i < n; i++)				
+"printf(""%d\t"", arr[i]);"				
+getch();				
+}				
+Output:-				
+Enter the number of elements in array				
+5				
+Enter 5 numbers				
+45				
+65				
+7				
+9				
+5				
+5	7	9	45	65
+
+PRACTICAL NO .9- Write a ‘C’ Program to Sort an Array of Strings using Selection Sort Method.				
+Program:-				
+#include <stdio.h>				
+#include <string.h>				
+#define MAX_LEN 100				
+// Sorts an array of strings where length of every				
+// string should be smaller than MAX_LEN				
+"void selectionSort(char arr[][MAX_LEN], int n)"				
+{				
+"int i, j, min_idx;"				
+// One by one move boundary of unsorted subarray				
+char minStr[MAX_LEN];				
+for (i = 0; i < n-1; i++)				
+{				
+// Find the minimum element in unsorted array				
+int min_idx = i;				
+"strcpy(minStr, arr[i]);"				
+for (j = i+1; j < n; j++)				
+{				
+// If min is greater than arr[j]				
+"if (strcmp(minStr, arr[j]) > 0)"				
+{				
+// Make arr[j] as minStr and update min_idx				
+"strcpy(minStr, arr[j]);"				
+min_idx = j;				
+}				
+}				
+// Swap the found minimum element with the first element				
+if (min_idx != i)				
+{				
+char temp[MAX_LEN];				
+"strcpy(temp, arr[i]); //swap item[pos] and item[i]"				
+"strcpy(arr[i], arr[min_idx]);"				
+"strcpy(arr[min_idx], temp);"				
+}				
+}				
+}				
+// Driver code				
+int main()				
+{				
+"char arr[][MAX_LEN] = {""GeeksforGeeks"", ""Practice.GeeksforGeeks"","				
+"""GeeksQuiz""};"				
+int n = sizeof(arr)/sizeof(arr[0]);				
+int i;				
+"printf(""Given array is\n"");"				
+for (i = 0; i < n; i++)				
+"printf(""%d: %s \n"", i, arr[i]);"				
+"selectionSort(arr, n);"				
+"printf(""\nSorted array is\n"");"				
+for (i = 0; i < n; i++)				
+"printf(""%d: %s \n"", i, arr[i]);"				
+return 0;				
+}				
+Output:-				
+Given array is				
+0: GeeksforGeeks				
+1: Practice.GeeksforGeeks				
+2: GeeksQuiz				
+Sorted array is				
+0: GeeksQuiz				
+1: GeeksforGeeks				
+2: Practice.GeeksforGeeks				
+
+Practical 10: Write a ‘C’ Program to Sort an Array of numbers using Insertion Sort Method 
+Program: 
+#include <stdio.h> #include <conio.h> void main() 
+{ 
+    int n, i, j, temp;     int arr[64];     printf("Enter number of elements\n");     scanf("%d", &n);     printf("Enter %d integers\n", n);     for (i = 0; i < n; i++)  
+    {         scanf("%d", &arr[i]); 
+    } 
+    for (i = 1; i < n; i++)  
+    {         j = i;         while (j > 0 && arr[j - 1] > arr[j])  
+        {             temp = arr[j];             arr[j] = arr[j - 1];             arr[j - 1] = temp;             j--; 
+        } 
+    }     printf("Sorted list in ascending order:\n");     for (i = 0; i < n; i++)      {         printf("%d\n", arr[i]); 
+    }   getch(); 
+} 
+Output:- Enter number of elements 
+6 
+Enter 6 integers 
+87 
+55 
+44 
+3 
+89 
+62 
+Sorted list in ascending order: 
+3 
+44 
+55 
+62 
+87 
+89 
+
+Q.17 Write a 'C' Program to perform PUSH and POP Operations on a Stack using a Linked List.		
+#include <stdio.h>		
+#include <stdlib.h>		
+void push();		
+void pop();		
+void display();		
+struct node		
+{		
+int val;		
+struct node *next;		
+};		
+struct node *head;		
+void main ()		
+{		
+int choice=0;		
+"printf(""\n*********Stack operations using linked list*********\n"");"		
+"printf(""\n----------------------------------------------\n"");"		
+while(choice != 4)		
+{		
+"printf(""\n\nChose one from the below options...\n"");"		
+"printf(""\n1.Push\n2.Pop\n3.Show\n4.Exit"");"		
+"printf(""\n Enter your choice \n"");"		
+"scanf(""%d"",&choice);"		
+switch(choice)		
+{		
+case 1:		
+{		
+push();		
+break;		
+}		
+case 2:		
+{		
+pop();		
+break;		
+}		
+case 3:		
+{		
+display();		
+break;		
+}		
+case 4:		
+{		
+"printf(""Exiting...."");"		
+break;		
+}		
+default:		
+{		
+"printf(""Please Enter valid choice "");"		
+}		
+};		
+}		
+}		
+void push ()		
+{		
+int val;		
+struct node *ptr = (struct node*)malloc(sizeof(struct node));		
+if(ptr == NULL)		
+{		
+"printf(""not able to push the element"");"		
+}		
+else		
+{		
+"printf(""Enter the value"");"		
+"scanf(""%d"",&val);"		
+if(head==NULL)		
+{		
+ptr->val = val;		
+ptr -> next = NULL;		
+head=ptr;		
+}		
+else		
+{		
+ptr->val = val;		
+ptr->next = head;		
+head=ptr;		
+}		
+"printf(""Item pushed"");"		
+}		
+}		
+void pop()		
+{		
+int item;		
+struct node *ptr;		
+if (head == NULL)		
+{		
+"printf(""Underflow"");"		
+}		
+else		
+{		
+item = head->val;		
+ptr = head;		
+head = head->next;		
+free(ptr);		
+"printf(""Item popped"");"		
+}		
+}		
+void display()		
+{		
+int i;		
+struct node *ptr;		
+ptr=head;		
+if(ptr == NULL)		
+{		
+"printf(""Stack is empty\n"");"		
+}		
+else		
+{		
+"printf(""Printing Stack elements \n"");"		
+while(ptr!=NULL)		
+{		
+"printf(""%d\n"",ptr->val);"		
+ptr = ptr->next;		
+}		
+}		
+}		
+Output:		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice    1		
+Enter the value 11		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 1		
+Enter the value 12		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice    1		
+Enter the value 13		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 2		
+Item popped		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 3		
+Printing Stack elements 12              11		
+Q.18 Write a 'C' program to perform multiplication of two numbers using recursion.		
+#include <stdio.h>		
+"int product(int, int);"		
+int main()		
+{		
+"int a, b, result;"		
+"printf(""Enter two numbers to find their product: "");"		
+"scanf(""%d%d"", &a, &b);"		
+"result = product(a, b);"		
+"printf(""Product of %d and %d is %d\n"", a, b, result);"		
+return 0;		
+}		
+"int product(int a, int b)"		
+{		
+if (a < b)		
+{		
+"return product(b, a);"		
+}		
+else if (b != 0)		
+{		
+"return (a + product(a, b - 1));"		
+}		
+else		
+{		
+return 0;		
+}		
+}		
+Output:		
+Enter two numbers to find their product:		
+10		
+5		
+Product of 10 and 5 is		
+PRACTICAL 12 & 13. Write a C Program to Implement Singly Linked List with Operations		
+#include <stdio.h>		
+#include <stdlib.h>		
+// Linked List Node		
+struct node {		
+int info;		
+struct node* link;		
+};		
+struct node* start = NULL;		
+// Function to create list with n nodes initially		
+void createList()		
+{		
+if (start == NULL) {		
+int n;		
+"printf(""\nEnter the number of nodes: "");"		
+"scanf(""%d"", &n);"		
+if (n != 0) {		
+int data;		
+struct node* newnode;		
+struct node* temp;		
+newnode = malloc(sizeof(struct node));		
+start = newnode;		
+temp = start;		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+start->info = data;		
+for (int i = 2; i <= n; i++)		
+{		
+node));		
+newnode = malloc(sizeof(struct		
+temp->link = newnode;		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+newnode->info = data;		
+temp = temp->link;		
+}		
+}		
+"printf(""\nThe list is created\n"");"		
+}		
+else		
+"printf(""\nThe list is already created\n"");"		
+}		
+// Function to traverse the linked list		
+void traverse()		
+{		
+struct node* temp;		
+// List is empty		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+// Else print the LL		
+else {		
+temp = start;		
+while (temp != NULL) {		
+"printf(""Data = %d\n"", temp->info);"		
+temp = temp->link;		
+}		
+}		
+}		
+// Function to insert at the front		
+// of the linked list		
+void insertAtFront()		
+{		
+int data;		
+struct node* temp;		
+temp = malloc(sizeof(struct node));		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+temp->info = data;		
+// Pointer of temp will be		
+// assigned to start		
+temp->link = start;		
+start = temp;		
+}		
+// Function to insert at the end of		
+// the linked list		
+void insertAtEnd()		
+{		
+int data;		
+"struct node *temp, *head;"		
+temp = malloc(sizeof(struct node));		
+// Enter the number		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+// Changes links		
+temp->link = 0;		
+temp->info = data;		
+head = start;		
+while (head->link != NULL) {		
+head = head->link;		
+}		
+head->link = temp;		
+}		
+// Function to insert at any specified		
+// position in the linked list		
+void insertAtPosition()		
+{		
+"struct node *temp, *newnode;"		
+"int pos, data, i = 1;"		
+newnode = malloc(sizeof(struct node));		
+// Enter the position and data		
+"printf(""\nEnter position and data :"");"		
+"scanf(""%d %d"", &pos, &data);"		
+// Change Links		
+temp = start;		
+newnode->info = data;		
+newnode->link = 0;		
+while (i < pos - 1) {		
+temp = temp->link;		
+i++;		
+}		
+newnode->link = temp->link;		
+temp->link = newnode;		
+}		
+// Function to delete from the front		
+// of the linked list		
+void deleteFirst()		
+{		
+struct node* temp;		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+else {		
+temp = start;		
+start = start->link;		
+free(temp);		
+}		
+}		
+// Function to delete from the end		
+// of the linked list		
+void deleteEnd()		
+{		
+"struct node *temp, *prevnode;"		
+if (start == NULL)		
+"printf(""\nList is Empty\n"");"		
+else {		
+temp = start;		
+while (temp->link != 0) {		
+prevnode = temp;		
+temp = temp->link;		
+}		
+free(temp);		
+prevnode->link = 0;		
+}		
+}		
+// Function to delete from any specified		
+// position from the linked list		
+void deletePosition()		
+{		
+"struct node *temp, *position;"		
+"int i = 1, pos;"		
+// If LL is empty		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+// Otherwise		
+else {		
+"printf(""\nEnter index : "");"		
+// Position to be deleted		
+"scanf(""%d"", &pos);"		
+position = malloc(sizeof(struct node));		
+temp = start;		
+// Traverse till position		
+while (i < pos - 1) {		
+temp = temp->link;		
+i++;		
+}		
+// Change Links		
+position = temp->link;		
+temp->link = position->link;		
+// Free memory		
+free(position);		
+}		
+}		
+// Function to find the maximum element		
+// in the linked list		
+// Function to search an element in linked list		
+void search()		
+{		
+int found = -1;		
+// creating node to traverse		
+struct node* tr = start;		
+// first checking if the list is empty or not		
+if (start == NULL) {		
+"printf(""Linked list is empty\n"");"		
+}		
+else {		
+"printf(""\nEnter the element you want to search: "");"		
+int key;		
+"scanf(""%d"", &key);"		
+// checking by traversing		
+while (tr != NULL) {		
+// checking for key		
+if (tr->info == key) {		
+found = 1;		
+break;		
+}		
+// moving forward if not at this position		
+else {		
+tr = tr->link;		
+}		
+}		
+// printing found or not		
+if (found == 1) {		
+printf(		
+"""Yes, %d is present in the linked list.\n"","		
+key);		
+}		
+else {		
+"printf(""No, %d is not present in the linked """		
+"""list.\n"","		
+key);		
+}		
+}		
+}		
+// Driver Code		
+int main()		
+{		
+createList();		
+int choice;		
+while (1) {		
+"printf(""\n\t1 To see list\n"");"		
+"printf(""\t2 For insertion at"""		
+""" starting\n"");"		
+"printf(""\t3 For insertion at"""		
+""" end\n"");"		
+"printf(""\t4 For insertion at """		
+"""any position\n"");"		
+"printf(""\t5 For deletion of """		
+"""first element\n"");"		
+"printf(""\t6 For deletion of """		
+"""last element\n"");"		
+"printf(""\t7 For deletion of """		
+"""element at any position\n"");"		
+"printf(""\t8 Search an element in linked list\n"");"		
+"printf(""\t9 To exit\n"");"		
+"printf(""\nEnter Choice :\n"");"		
+"scanf(""%d"", &choice);"		
+switch (choice) {		
+case 1:		
+traverse();		
+break;		
+case 2:		
+insertAtFront();		
+break;		
+case 3:		
+insertAtEnd();		
+break;		
+case 4:		
+insertAtPosition();		
+break;		
+case 5:		
+deleteFirst();		
+break;		
+case 6:		
+deleteEnd();		
+break;		
+case 7:		
+deletePosition();		
+break;		
+case 8:		
+search();		
+break;		
+case 9:		
+exit(1);		
+break;		
+default:		
+"printf(""Incorrect Choice\n"");"		
+}		
+}		
+return 0;		
+}		
+OUTPUT:		
+Enter the number of nodes: 3		
+Enter number to be inserted : 10		
+Enter number to be inserted : 20		
+Enter number to be inserted : 30		
+The list is created		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :4		
+Enter position and data :2		
+40		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :8		
+Enter the element you want to search: 30		
+"Yes, 30 is present in the linked list."		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :1		
+Data = 10		
+Data = 40		
+Data = 20		
+Data = 30	
+
+	
+Q.17 Write a 'C' Program to perform PUSH and POP Operations on a Stack using a Linked List.		
+#include <stdio.h>		
+#include <stdlib.h>		
+void push();		
+void pop();		
+void display();		
+struct node		
+{		
+int val;		
+struct node *next;		
+};		
+struct node *head;		
+void main ()		
+{		
+int choice=0;		
+"printf(""\n*********Stack operations using linked list*********\n"");"		
+"printf(""\n----------------------------------------------\n"");"		
+while(choice != 4)		
+{		
+"printf(""\n\nChose one from the below options...\n"");"		
+"printf(""\n1.Push\n2.Pop\n3.Show\n4.Exit"");"		
+"printf(""\n Enter your choice \n"");"		
+"scanf(""%d"",&choice);"		
+switch(choice)		
+{		
+case 1:		
+{		
+push();		
+break;		
+}		
+case 2:		
+{		
+pop();		
+break;		
+}		
+case 3:		
+{		
+display();		
+break;		
+}		
+case 4:		
+{		
+"printf(""Exiting...."");"		
+break;		
+}		
+default:		
+{		
+"printf(""Please Enter valid choice "");"		
+}		
+};		
+}		
+}		
+void push ()		
+{		
+int val;		
+struct node *ptr = (struct node*)malloc(sizeof(struct node));		
+if(ptr == NULL)		
+{		
+"printf(""not able to push the element"");"		
+}		
+else		
+{		
+"printf(""Enter the value"");"		
+"scanf(""%d"",&val);"		
+if(head==NULL)		
+{		
+ptr->val = val;		
+ptr -> next = NULL;		
+head=ptr;		
+}		
+else		
+{		
+ptr->val = val;		
+ptr->next = head;		
+head=ptr;		
+}		
+"printf(""Item pushed"");"		
+}		
+}		
+void pop()		
+{		
+int item;		
+struct node *ptr;		
+if (head == NULL)		
+{		
+"printf(""Underflow"");"		
+}		
+else		
+{		
+item = head->val;		
+ptr = head;		
+head = head->next;		
+free(ptr);		
+"printf(""Item popped"");"		
+}		
+}		
+void display()		
+{		
+int i;		
+struct node *ptr;		
+ptr=head;		
+if(ptr == NULL)		
+{		
+"printf(""Stack is empty\n"");"		
+}		
+else		
+{		
+"printf(""Printing Stack elements \n"");"		
+while(ptr!=NULL)		
+{		
+"printf(""%d\n"",ptr->val);"		
+ptr = ptr->next;		
+}		
+}		
+}		
+Output:		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice    1		
+Enter the value 11		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 1		
+Enter the value 12		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice    1		
+Enter the value 13		
+Item pushed		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 2		
+Item popped		
+Chose one from the below options...		
+1.Push		
+2.Pop		
+3.Show		
+4.Exit		
+Enter your choice 3		
+Printing Stack elements 12              11		
+Q.18 Write a 'C' program to perform multiplication of two numbers using recursion.		
+#include <stdio.h>		
+"int product(int, int);"		
+int main()		
+{		
+"int a, b, result;"		
+"printf(""Enter two numbers to find their product: "");"		
+"scanf(""%d%d"", &a, &b);"		
+"result = product(a, b);"		
+"printf(""Product of %d and %d is %d\n"", a, b, result);"		
+return 0;		
+}		
+"int product(int a, int b)"		
+{		
+if (a < b)		
+{		
+"return product(b, a);"		
+}		
+else if (b != 0)		
+{		
+"return (a + product(a, b - 1));"		
+}		
+else		
+{		
+return 0;		
+}		
+}		
+Output:		
+Enter two numbers to find their product:		
+10		
+5		
+Product of 10 and 5 is		
+PRACTICAL 12 & 13. Write a C Program to Implement Singly Linked List with Operations		
+#include <stdio.h>		
+#include <stdlib.h>		
+// Linked List Node		
+struct node {		
+int info;		
+struct node* link;		
+};		
+struct node* start = NULL;		
+// Function to create list with n nodes initially		
+void createList()		
+{		
+if (start == NULL) {		
+int n;		
+"printf(""\nEnter the number of nodes: "");"		
+"scanf(""%d"", &n);"		
+if (n != 0) {		
+int data;		
+struct node* newnode;		
+struct node* temp;		
+newnode = malloc(sizeof(struct node));		
+start = newnode;		
+temp = start;		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+start->info = data;		
+for (int i = 2; i <= n; i++)		
+{		
+node));		
+newnode = malloc(sizeof(struct		
+temp->link = newnode;		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+newnode->info = data;		
+temp = temp->link;		
+}		
+}		
+"printf(""\nThe list is created\n"");"		
+}		
+else		
+"printf(""\nThe list is already created\n"");"		
+}		
+// Function to traverse the linked list		
+void traverse()		
+{		
+struct node* temp;		
+// List is empty		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+// Else print the LL		
+else {		
+temp = start;		
+while (temp != NULL) {		
+"printf(""Data = %d\n"", temp->info);"		
+temp = temp->link;		
+}		
+}		
+}		
+// Function to insert at the front		
+// of the linked list		
+void insertAtFront()		
+{		
+int data;		
+struct node* temp;		
+temp = malloc(sizeof(struct node));		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+temp->info = data;		
+// Pointer of temp will be		
+// assigned to start		
+temp->link = start;		
+start = temp;		
+}		
+// Function to insert at the end of		
+// the linked list		
+void insertAtEnd()		
+{		
+int data;		
+"struct node *temp, *head;"		
+temp = malloc(sizeof(struct node));		
+// Enter the number		
+"printf(""\nEnter number to"""		
+""" be inserted : "");"		
+"scanf(""%d"", &data);"		
+// Changes links		
+temp->link = 0;		
+temp->info = data;		
+head = start;		
+while (head->link != NULL) {		
+head = head->link;		
+}		
+head->link = temp;		
+}		
+// Function to insert at any specified		
+// position in the linked list		
+void insertAtPosition()		
+{		
+"struct node *temp, *newnode;"		
+"int pos, data, i = 1;"		
+newnode = malloc(sizeof(struct node));		
+// Enter the position and data		
+"printf(""\nEnter position and data :"");"		
+"scanf(""%d %d"", &pos, &data);"		
+// Change Links		
+temp = start;		
+newnode->info = data;		
+newnode->link = 0;		
+while (i < pos - 1) {		
+temp = temp->link;		
+i++;		
+}		
+newnode->link = temp->link;		
+temp->link = newnode;		
+}		
+// Function to delete from the front		
+// of the linked list		
+void deleteFirst()		
+{		
+struct node* temp;		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+else {		
+temp = start;		
+start = start->link;		
+free(temp);		
+}		
+}		
+// Function to delete from the end		
+// of the linked list		
+void deleteEnd()		
+{		
+"struct node *temp, *prevnode;"		
+if (start == NULL)		
+"printf(""\nList is Empty\n"");"		
+else {		
+temp = start;		
+while (temp->link != 0) {		
+prevnode = temp;		
+temp = temp->link;		
+}		
+free(temp);		
+prevnode->link = 0;		
+}		
+}		
+// Function to delete from any specified		
+// position from the linked list		
+void deletePosition()		
+{		
+"struct node *temp, *position;"		
+"int i = 1, pos;"		
+// If LL is empty		
+if (start == NULL)		
+"printf(""\nList is empty\n"");"		
+// Otherwise		
+else {		
+"printf(""\nEnter index : "");"		
+// Position to be deleted		
+"scanf(""%d"", &pos);"		
+position = malloc(sizeof(struct node));		
+temp = start;		
+// Traverse till position		
+while (i < pos - 1) {		
+temp = temp->link;		
+i++;		
+}		
+// Change Links		
+position = temp->link;		
+temp->link = position->link;		
+// Free memory		
+free(position);		
+}		
+}		
+// Function to find the maximum element		
+// in the linked list		
+// Function to search an element in linked list		
+void search()		
+{		
+int found = -1;		
+// creating node to traverse		
+struct node* tr = start;		
+// first checking if the list is empty or not		
+if (start == NULL) {		
+"printf(""Linked list is empty\n"");"		
+}		
+else {		
+"printf(""\nEnter the element you want to search: "");"		
+int key;		
+"scanf(""%d"", &key);"		
+// checking by traversing		
+while (tr != NULL) {		
+// checking for key		
+if (tr->info == key) {		
+found = 1;		
+break;		
+}		
+// moving forward if not at this position		
+else {		
+tr = tr->link;		
+}		
+}		
+// printing found or not		
+if (found == 1) {		
+printf(		
+"""Yes, %d is present in the linked list.\n"","		
+key);		
+}		
+else {		
+"printf(""No, %d is not present in the linked """		
+"""list.\n"","		
+key);		
+}		
+}		
+}		
+// Driver Code		
+int main()		
+{		
+createList();		
+int choice;		
+while (1) {		
+"printf(""\n\t1 To see list\n"");"		
+"printf(""\t2 For insertion at"""		
+""" starting\n"");"		
+"printf(""\t3 For insertion at"""		
+""" end\n"");"		
+"printf(""\t4 For insertion at """		
+"""any position\n"");"		
+"printf(""\t5 For deletion of """		
+"""first element\n"");"		
+"printf(""\t6 For deletion of """		
+"""last element\n"");"		
+"printf(""\t7 For deletion of """		
+"""element at any position\n"");"		
+"printf(""\t8 Search an element in linked list\n"");"		
+"printf(""\t9 To exit\n"");"		
+"printf(""\nEnter Choice :\n"");"		
+"scanf(""%d"", &choice);"		
+switch (choice) {		
+case 1:		
+traverse();		
+break;		
+case 2:		
+insertAtFront();		
+break;		
+case 3:		
+insertAtEnd();		
+break;		
+case 4:		
+insertAtPosition();		
+break;		
+case 5:		
+deleteFirst();		
+break;		
+case 6:		
+deleteEnd();		
+break;		
+case 7:		
+deletePosition();		
+break;		
+case 8:		
+search();		
+break;		
+case 9:		
+exit(1);		
+break;		
+default:		
+"printf(""Incorrect Choice\n"");"		
+}		
+}		
+return 0;		
+}		
+OUTPUT:		
+Enter the number of nodes: 3		
+Enter number to be inserted : 10		
+Enter number to be inserted : 20		
+Enter number to be inserted : 30		
+The list is created		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :4		
+Enter position and data :2		
+40		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :8		
+Enter the element you want to search: 30		
+"Yes, 30 is present in the linked list."		
+1 To see list		
+2 For insertion at starting		
+3 For insertion at end		
+4 For insertion at any position		
+5 For deletion of first element		
+6 For deletion of last element		
+7 For deletion of element at any position		
+8 Search an element in linked list		
+9 To exit		
+Enter Choice :1		
+Data = 10		
+Data = 40		
+Data = 20		
+Data = 30		
+Q.16 Write a 'C' Program to perform PUSH and POP Operations on Stack using an Array.		
+#include <stdio.h>		
+#include <stdlib.h>		
+#define SIZE 4		
+"int top = -1, inp_array[SIZE];"		
+void push();		
+void pop();		
+void show();		
+int main()		
+{		
+int choice;		
+while (1)		
+{		
+"printf(""\nPerform operations on the stack:"");"		
+"printf(""\n1.Push the element\n2.Pop the element\n3.Show\n4.End"");"		
+"printf(""\n\nEnter the choice: "");"		
+"scanf(""%d"", &choice);"		
+switch (choice)		
+{		
+case 1:		
+push();		
+break;		
+case 2:		
+pop();		
+break;		
+case 3:		
+show();		
+break;		
+case 4:		
+exit(0);		
+default:		
+"printf(""\nInvalid choice!!"");"		
+}		
+}		
+}		
+void push()		
+{		
+int x;		
+if (top == SIZE - 1)		
+{		
+"printf(""\nOverflow!!"");"		
+}		
+else		
+{		
+"printf(""\nEnter the element to be added onto the stack: "");"		
+"scanf(""%d"", &x);"		
+top = top + 1;		
+inp_array[top] = x;		
+}		
+}		
+void pop()		
+{		
+if (top == -1)		
+{		
+"printf(""\nUnderflow!!"");"		
+}		
+else		
+{		
+"printf(""\nPopped element: %d"", inp_array[top]);"		
+top = top - 1;		
+}		
+}		
+void show()		
+{		
+if (top == -1)		
+{		
+"printf(""\nUnderflow!!"");"		
+}		
+else		
+{		
+"printf(""\nElements present in the stack: \n"");"		
+for (int i = top; i >= 0; --i)		
+"printf(""%d\n"", inp_array[i]);"		
+}		
+}		
+Output:		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 31		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 32		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 33		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 34		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 2		
+Popped element: 34		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 3		
+Elements present in the stack: 33	32	31
+Q .19 Write a 'C' program to print given string in reverse using recursion.		
+# include <stdio.h>		
+// Function to print reverse of		
+// the passed string		
+void reverse(char *str)		
+{		
+if (*str)		
+{		
+reverse(str + 1);		
+"printf(""%c"", *str);"		
+}		
+}		
+// Driver code		
+int main()		
+{		
+"char a[] = ""Data Structure Using C"";"		
+reverse(a);		
+return 0;		
+}		
+Output:		
+C gnisU erutcurtS ataD		
+Q.20 Write a 'C' program to create a Singly Linked List and traverse in reverse order using recursion.		
+#include <stdio.h>		
+#include <stdlib.h>		
+struct node		
+{		
+int data;		
+struct node *next;		
+};		
+void print_reverse_recursive (struct node *);		
+void print (struct node *);		
+"void create_new_node (struct node *, int );"		
+//Driver Function		
+int main ()		
+{		
+struct node *head = NULL;		
+"insert_new_node (&head, 1);"		
+"insert_new_node (&head, 2);"		
+"insert_new_node (&head, 3);"		
+"insert_new_node (&head, 4);"		
+"printf (""LinkedList : "");"		
+print (head);		
+"printf (""\nLinkedList in reverse order : "");"		
+print_reverse_recursive (head);		
+"printf (""\n"");"		
+return 0;		
+}		
+//Recursive Reverse		
+void print_reverse_recursive (struct node *head)		
+{		
+if (head == NULL)		
+{		
+return;		
+}		
+//Recursive call first		
+print_reverse_recursive (head -> next);		
+//Print later		
+"printf (""%d "", head -> data);"		
+}		
+//Print the linkedlist normal		
+void print (struct node *head)		
+{		
+if (head == NULL)		
+{		
+return;		
+}		
+"printf (""%d "", head -> data);"		
+print (head -> next);		
+}		
+//New data added in the start		
+"void insert_new_node (struct node ** head_ref, int new_data)"		
+{		
+struct node * new_node = (struct node *) malloc (sizeof (struct node));		
+new_node -> data = new_data;		
+new_node -> next = (*head_ref);		
+(*head_ref) = new_node;		
+}		
+Output:		
+LinkedList : 4 3 2 1		
+LinkedList in reverse order : 1 2 3 4		
+Practicle no 11 Write a ‘C’ Program to Sort an Array of Strings using Insertion Sort Method		
+#include <stdio.h>		
+#include <string.h>		
+#define MAX_STRINGS 5		
+#define MAX_STRING_LEN 200		
+void InsertionSort(char list[MAX_STRINGS][MAX_STRING_LEN]);		
+int main()		
+{		
+int index;		
+char strings[MAX_STRINGS][MAX_STRING_LEN];		
+/* Get input */		
+"printf(""Enter %d strings.\n"", MAX_STRINGS);"		
+for (index = 0; index < MAX_STRINGS; index++)		
+{		
+"printf(""Input string %d : "", index);"		
+"scanf(""%199s"", strings[index]);           // limit the width so we don't go past the buffer"		
+strings[index][sizeof(strings[index]) - 1] = '\0';		
+}		
+InsertionSort(strings);		
+"printf(""\nThe input set, in alphabetical order:\n"");"		
+for (index = 0; index < MAX_STRINGS; index++)		
+{		
+"printf(""%s\n"", strings[index]);"		
+}		
+}		
+void InsertionSort(char list[MAX_STRINGS][MAX_STRING_LEN])		
+{		
+for (int i = 1; i < MAX_STRINGS; i++)		
+{		
+int j = i;		
+"while (j > 0 && strcmp(list[j - 1], list[j]) > 0)"		
+{		
+char tmp[MAX_STRING_LEN];		
+"strncpy(tmp, list[j - 1], sizeof(tmp) - 1);"		
+tmp[sizeof(tmp) - 1] = '\0';		
+"strncpy(list[j - 1], list[j], sizeof(list[j - 1]) - 1);"		
+list[j - 1][sizeof(list[j - 1]) - 1] = '\0';		
+"strncpy(list[j], tmp, sizeof(list[j]));"		
+list[j][sizeof(list[j]) - 1] = '\0';		
+--j;		
+}		
+}		
+}		
+OUTPUT:		
+Enter 5 strings.		
+Input string 0 : shivani		
+Input string 1 : nikat		
+Input string 2 : swati		
+Input string 3 : dipali		
+Input string 4 : pritee		
+"The input set, in alphabetical order:"		
+dipali		
+nikat		
+pritee		
+shivani		
+swati		
+Practical 15:- Write a 'C' Program to add Two Polynomials using a Linked List.		
+Program:		
+#include <stdio.h>		
+#include <stdlib.h>		
+struct Node {		
+int coef;		
+int exp;		
+struct Node* next;		
+};		
+typedef struct Node Node;		
+"void insert(Node** poly, int coef, int exp) {"		
+Node* temp = (Node*) malloc(sizeof(Node));		
+temp->coef = coef;		
+temp->exp = exp;		
+temp->next = NULL;		
+if (*poly == NULL) {		
+*poly = temp;		
+return;		
+}		
+Node* current = *poly;		
+while (current->next != NULL) {		
+current = current->next;		
+}		
+current->next = temp;		
+}		
+void print(Node* poly) {		
+if (poly == NULL) {		
+"printf(""0\n"");"		
+return;		
+}		
+Node* current = poly;		
+while (current != NULL) {		
+"printf(""%dx^%d"", current->coef, current->exp);"		
+if (current->next != NULL) {		
+"printf("" + "");"		
+}		
+current = current->next;		
+}		
+"printf(""\n"");"		
+}		
+"Node* add(Node* poly1, Node* poly2) {"		
+Node* result = NULL;		
+while (poly1 != NULL && poly2 != NULL) {		
+if (poly1->exp == poly2->exp) {		
+"insert(&result, poly1->coef + poly2->coef, poly1->exp);"		
+poly1 = poly1->next;		
+poly2 = poly2->next;		
+} else if (poly1->exp > poly2->exp) {		
+"insert(&result, poly1->coef, poly1->exp);"		
+poly1 = poly1->next;		
+} else {		
+"insert(&result, poly2->coef, poly2->exp);"		
+poly2 = poly2->next;		
+}		
+}		
+while (poly1 != NULL) {		
+"insert(&result, poly1->coef, poly1->exp);"		
+poly1 = poly1->next;		
+}		
+while (poly2 != NULL) {		
+"insert(&result, poly2->coef, poly2->exp);"		
+poly2 = poly2->next;		
+}		
+return result;		
+}		
+int main() {		
+Node* poly1 = NULL;		
+"insert(&poly1, 5, 4);"		
+"insert(&poly1, 3, 2);"		
+"insert(&poly1, 1, 0);"		
+Node* poly2 = NULL;		
+"insert(&poly2, 4, 4);"		
+"insert(&poly2, 2, 2);"		
+"insert(&poly2, 1, 1);"		
+"printf(""First polynomial: "");"		
+print(poly1);		
+"printf(""Second polynomial: "");"		
+print(poly2);		
+"Node* result = add(poly1, poly2);"		
+"printf(""Result: "");"		
+print(result);		
+return 0;		
+}		
+OUTPUT:		
+First polynomial: 5x^4 + 3x^2 + 1x^0		
+Second polynomial: 4x^4 + 2x^2 + 1x^1		
+Result: 9x^4 + 5x^2 + 1x^1 + 1x^0		
+
+
+Q.16 Write a 'C' Program to perform PUSH and POP Operations on Stack using an Array.		
+#include <stdio.h>		
+#include <stdlib.h>		
+#define SIZE 4		
+"int top = -1, inp_array[SIZE];"		
+void push();		
+void pop();		
+void show();		
+int main()		
+{		
+int choice;		
+while (1)		
+{		
+"printf(""\nPerform operations on the stack:"");"		
+"printf(""\n1.Push the element\n2.Pop the element\n3.Show\n4.End"");"		
+"printf(""\n\nEnter the choice: "");"		
+"scanf(""%d"", &choice);"		
+switch (choice)		
+{		
+case 1:		
+push();		
+break;		
+case 2:		
+pop();		
+break;		
+case 3:		
+show();		
+break;		
+case 4:		
+exit(0);		
+default:		
+"printf(""\nInvalid choice!!"");"		
+}		
+}		
+}		
+void push()		
+{		
+int x;		
+if (top == SIZE - 1)		
+{		
+"printf(""\nOverflow!!"");"		
+}		
+else		
+{		
+"printf(""\nEnter the element to be added onto the stack: "");"		
+"scanf(""%d"", &x);"		
+top = top + 1;		
+inp_array[top] = x;		
+}		
+}		
+void pop()		
+{		
+if (top == -1)		
+{		
+"printf(""\nUnderflow!!"");"		
+}		
+else		
+{		
+"printf(""\nPopped element: %d"", inp_array[top]);"		
+top = top - 1;		
+}		
+}		
+void show()		
+{		
+if (top == -1)		
+{		
+"printf(""\nUnderflow!!"");"		
+}		
+else		
+{		
+"printf(""\nElements present in the stack: \n"");"		
+for (int i = top; i >= 0; --i)		
+"printf(""%d\n"", inp_array[i]);"		
+}		
+}		
+Output:		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 31		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 32		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 33		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 1		
+Enter the element to be added onto the stack: 34		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 2		
+Popped element: 34		
+Perform operations on the stack:		
+1.Push the element		
+2.Pop the element		
+3.Show		
+4.End		
+Enter the choice: 3		
+Elements present in the stack: 33	32	31
+Q .19 Write a 'C' program to print given string in reverse using recursion.		
+# include <stdio.h>		
+// Function to print reverse of		
+// the passed string		
+void reverse(char *str)		
+{		
+if (*str)		
+{		
+reverse(str + 1);		
+"printf(""%c"", *str);"		
+}		
+}		
+// Driver code		
+int main()		
+{		
+"char a[] = ""Data Structure Using C"";"		
+reverse(a);		
+return 0;		
+}		
+Output:		
+C gnisU erutcurtS ataD		
+Q.20 Write a 'C' program to create a Singly Linked List and traverse in reverse order using recursion.		
+#include <stdio.h>		
+#include <stdlib.h>		
+struct node		
+{		
+int data;		
+struct node *next;		
+};		
+void print_reverse_recursive (struct node *);		
+void print (struct node *);		
+"void create_new_node (struct node *, int );"		
+//Driver Function		
+int main ()		
+{		
+struct node *head = NULL;		
+"insert_new_node (&head, 1);"		
+"insert_new_node (&head, 2);"		
+"insert_new_node (&head, 3);"		
+"insert_new_node (&head, 4);"		
+"printf (""LinkedList : "");"		
+print (head);		
+"printf (""\nLinkedList in reverse order : "");"		
+print_reverse_recursive (head);		
+"printf (""\n"");"		
+return 0;		
+}		
+//Recursive Reverse		
+void print_reverse_recursive (struct node *head)		
+{		
+if (head == NULL)		
+{		
+return;		
+}		
+//Recursive call first		
+print_reverse_recursive (head -> next);		
+//Print later		
+"printf (""%d "", head -> data);"		
+}		
+//Print the linkedlist normal		
+void print (struct node *head)		
+{		
+if (head == NULL)		
+{		
+return;		
+}		
+"printf (""%d "", head -> data);"		
+print (head -> next);		
+}		
+//New data added in the start		
+"void insert_new_node (struct node ** head_ref, int new_data)"		
+{		
+struct node * new_node = (struct node *) malloc (sizeof (struct node));		
+new_node -> data = new_data;		
+new_node -> next = (*head_ref);		
+(*head_ref) = new_node;		
+}		
+Output:		
+LinkedList : 4 3 2 1		
+LinkedList in reverse order : 1 2 3 4		
+Practicle no 11 Write a ‘C’ Program to Sort an Array of Strings using Insertion Sort Method		
+#include <stdio.h>		
+#include <string.h>		
+#define MAX_STRINGS 5		
+#define MAX_STRING_LEN 200		
+void InsertionSort(char list[MAX_STRINGS][MAX_STRING_LEN]);		
+int main()		
+{		
+int index;		
+char strings[MAX_STRINGS][MAX_STRING_LEN];		
+/* Get input */		
+"printf(""Enter %d strings.\n"", MAX_STRINGS);"		
+for (index = 0; index < MAX_STRINGS; index++)		
+{		
+"printf(""Input string %d : "", index);"		
+"scanf(""%199s"", strings[index]);           // limit the width so we don't go past the buffer"		
+strings[index][sizeof(strings[index]) - 1] = '\0';		
+}		
+InsertionSort(strings);		
+"printf(""\nThe input set, in alphabetical order:\n"");"		
+for (index = 0; index < MAX_STRINGS; index++)		
+{		
+"printf(""%s\n"", strings[index]);"		
+}		
+}		
+void InsertionSort(char list[MAX_STRINGS][MAX_STRING_LEN])		
+{		
+for (int i = 1; i < MAX_STRINGS; i++)		
+{		
+int j = i;		
+"while (j > 0 && strcmp(list[j - 1], list[j]) > 0)"		
+{		
+char tmp[MAX_STRING_LEN];		
+"strncpy(tmp, list[j - 1], sizeof(tmp) - 1);"		
+tmp[sizeof(tmp) - 1] = '\0';		
+"strncpy(list[j - 1], list[j], sizeof(list[j - 1]) - 1);"		
+list[j - 1][sizeof(list[j - 1]) - 1] = '\0';		
+"strncpy(list[j], tmp, sizeof(list[j]));"		
+list[j][sizeof(list[j]) - 1] = '\0';		
+--j;		
+}		
+}		
+}		
+OUTPUT:		
+Enter 5 strings.		
+Input string 0 : shivani		
+Input string 1 : nikat		
+Input string 2 : swati		
+Input string 3 : dipali		
+Input string 4 : pritee		
+"The input set, in alphabetical order:"		
+dipali		
+nikat		
+pritee		
+shivani		
+swati		
+Practical 15:- Write a 'C' Program to add Two Polynomials using a Linked List.		
+Program:		
+#include <stdio.h>		
+#include <stdlib.h>		
+struct Node {		
+int coef;		
+int exp;		
+struct Node* next;		
+};		
+typedef struct Node Node;		
+"void insert(Node** poly, int coef, int exp) {"		
+Node* temp = (Node*) malloc(sizeof(Node));		
+temp->coef = coef;		
+temp->exp = exp;		
+temp->next = NULL;		
+if (*poly == NULL) {		
+*poly = temp;		
+return;		
+}		
+Node* current = *poly;		
+while (current->next != NULL) {		
+current = current->next;		
+}		
+current->next = temp;		
+}		
+void print(Node* poly) {		
+if (poly == NULL) {		
+"printf(""0\n"");"		
+return;		
+}		
+Node* current = poly;		
+while (current != NULL) {		
+"printf(""%dx^%d"", current->coef, current->exp);"		
+if (current->next != NULL) {		
+"printf("" + "");"		
+}		
+current = current->next;		
+}		
+"printf(""\n"");"		
+}		
+"Node* add(Node* poly1, Node* poly2) {"		
+Node* result = NULL;		
+while (poly1 != NULL && poly2 != NULL) {		
+if (poly1->exp == poly2->exp) {		
+"insert(&result, poly1->coef + poly2->coef, poly1->exp);"		
+poly1 = poly1->next;		
+poly2 = poly2->next;		
+} else if (poly1->exp > poly2->exp) {		
+"insert(&result, poly1->coef, poly1->exp);"		
+poly1 = poly1->next;		
+} else {		
+"insert(&result, poly2->coef, poly2->exp);"		
+poly2 = poly2->next;		
+}		
+}		
+while (poly1 != NULL) {		
+"insert(&result, poly1->coef, poly1->exp);"		
+poly1 = poly1->next;		
+}		
+while (poly2 != NULL) {		
+"insert(&result, poly2->coef, poly2->exp);"		
+poly2 = poly2->next;		
+}		
+return result;		
+}		
+int main() {		
+Node* poly1 = NULL;		
+"insert(&poly1, 5, 4);"		
+"insert(&poly1, 3, 2);"		
+"insert(&poly1, 1, 0);"		
+Node* poly2 = NULL;		
+"insert(&poly2, 4, 4);"		
+"insert(&poly2, 2, 2);"		
+"insert(&poly2, 1, 1);"		
+"printf(""First polynomial: "");"		
+print(poly1);		
+"printf(""Second polynomial: "");"		
+print(poly2);		
+"Node* result = add(poly1, poly2);"		
+"printf(""Result: "");"		
+print(result);		
+return 0;		
+}		
+OUTPUT:		
+First polynomial: 5x^4 + 3x^2 + 1x^0		
+Second polynomial: 4x^4 + 2x^2 + 1x^1		
+Result: 9x^4 + 5x^2 + 1x^1 + 1x^0		
+
